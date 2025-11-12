@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <!-- د GigaPub اعلاناتو سکریپټ -->
     <script src="https://ad.gigapub.tech/script?id=3410"></script>
-    <!-- د Smartlink اعلاناتو سکریپټ -->
-    <script src="https://0e41p.click/bcacd114c9dd5bca767a/9858bb4b3e/?placementName=airdrop"></script>
     <style>
         :root {
             --font-family: 'Poppins', sans-serif;
@@ -912,59 +910,6 @@
             font-weight: 700;
             white-space: nowrap;
         }
-        
-        /* د Smartlink اعلان سټایلونه */
-        .smartlink-ad-container {
-            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
-            color: white;
-            border-radius: 16px;
-            padding: 20px;
-            margin: 15px 0;
-            text-align: center;
-            box-shadow: var(--card-shadow);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .smartlink-ad-container:before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            transform: rotate(30deg);
-        }
-        
-        .smartlink-ad-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        
-        .smartlink-ad-description {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            margin-bottom: 15px;
-        }
-        
-        .smartlink-ad-btn {
-            background: white;
-            color: #FF6B6B;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        
-        .smartlink-ad-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-        }
     </style>
 </head>
 <body class="light-theme">
@@ -1000,13 +945,6 @@
         
         <main id="main-content">
             <div id="home-page" class="page active">
-                <!-- د Smartlink اعلان دلته اضافه شو -->
-                <div class="smartlink-ad-container">
-                    <div class="smartlink-ad-title">Special Airdrop Offer!</div>
-                    <div class="smartlink-ad-description">Complete this airdrop and earn extra rewards</div>
-                    <button class="smartlink-ad-btn" id="smartlink-ad-btn">Claim Now</button>
-                </div>
-                
                 <div class="stats-grid">
                     <div class="stat-card">
                         <h3>Today's Ads</h3>
@@ -1160,29 +1098,6 @@
         const showPopup = (content) => { popupBody.innerHTML = content; popup.style.display = 'flex'; };
         const closePopup = () => { popup.style.display = 'none'; };
         const updateProgress = (percentage) => { loadingProgress.textContent = `${percentage}%`; };
-
-        // د Smartlink اعلان ښکاره کولو فانکشن
-        const showSmartlinkAd = () => {
-            // د Smartlink اعلان لینک
-            const smartlinkUrl = "https://0e41p.click/bcacd114c9dd5bca767a/9858bb4b3e/?placementName=airdrop";
-            
-            // لینک په نوي ټیب کې پرانیستل
-            tg.openLink(smartlinkUrl);
-            
-            // د کارونکي لپاره پیغام ښکاره کول
-            showPopup(`
-                <h2>Airdrop Offer</h2>
-                <p>You are being redirected to the airdrop offer. Complete the task to earn rewards!</p>
-                <div class="popup-loader"><div class="spinner"></div></div>
-                <p>Redirecting...</p>
-                <button class="popup-close-btn" onclick="closePopup()">Close</button>
-            `);
-            
-            // د پوپاپ په اوتومات ډول تړل
-            setTimeout(() => {
-                closePopup();
-            }, 3000);
-        };
 
         const initApp = async () => {
             tg.ready(); tg.expand();
@@ -1481,9 +1396,6 @@
             document.getElementById('profile-page').addEventListener('submit', (e) => handleWithdraw(e));
             document.getElementById('referral-section').addEventListener('click', (e) => { if(e.target.id === 'copy-ref-link-btn') copyReferralLink(); });
             document.getElementById('move-to-balance-btn').addEventListener('click', handleMoveToBalance);
-            
-            // د Smartlink اعلان بټن سره تړل
-            document.getElementById('smartlink-ad-btn').addEventListener('click', showSmartlinkAd);
             
             // د USDT ویډرا میتود ټوګل اضافه کول
             document.querySelector('.withdraw-method-toggle').addEventListener('click', (e) => {
