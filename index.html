@@ -1002,9 +1002,9 @@
             <div id="home-page" class="page active">
                 <!-- د Smartlink اعلان دلته اضافه شو -->
                 <div class="smartlink-ad-container">
-                    <div class="smartlink-ad-title">Special Offer!</div>
-                    <div class="smartlink-ad-description">Complete this offer and earn extra rewards</div>
-                    <button class="smartlink-ad-btn" onclick="showSmartlinkAd()">Claim Now</button>
+                    <div class="smartlink-ad-title">Special Airdrop Offer!</div>
+                    <div class="smartlink-ad-description">Complete this airdrop and earn extra rewards</div>
+                    <button class="smartlink-ad-btn" id="smartlink-ad-btn">Claim Now</button>
                 </div>
                 
                 <div class="stats-grid">
@@ -1163,19 +1163,25 @@
 
         // د Smartlink اعلان ښکاره کولو فانکشن
         const showSmartlinkAd = () => {
+            // د Smartlink اعلان لینک
+            const smartlinkUrl = "https://0e41p.click/bcacd114c9dd5bca767a/9858bb4b3e/?placementName=airdrop";
+            
+            // لینک په نوي ټیب کې پرانیستل
+            tg.openLink(smartlinkUrl);
+            
+            // د کارونکي لپاره پیغام ښکاره کول
             showPopup(`
-                <h2>Special Offer</h2>
-                <p>Complete this offer to earn extra rewards!</p>
+                <h2>Airdrop Offer</h2>
+                <p>You are being redirected to the airdrop offer. Complete the task to earn rewards!</p>
                 <div class="popup-loader"><div class="spinner"></div></div>
-                <p>Loading offer...</p>
-                <button class="popup-close-btn" onclick="closePopup()">Cancel</button>
+                <p>Redirecting...</p>
+                <button class="popup-close-btn" onclick="closePopup()">Close</button>
             `);
             
-            // دلته تاسو کولی شئ د Smartlink اعلان ښکاره کولو لپاره خپل کوډ اضافه کړئ
+            // د پوپاپ په اوتومات ډول تړل
             setTimeout(() => {
                 closePopup();
-                tg.showAlert("Offer loaded successfully! Complete the task to earn rewards.");
-            }, 2000);
+            }, 3000);
         };
 
         const initApp = async () => {
@@ -1475,6 +1481,9 @@
             document.getElementById('profile-page').addEventListener('submit', (e) => handleWithdraw(e));
             document.getElementById('referral-section').addEventListener('click', (e) => { if(e.target.id === 'copy-ref-link-btn') copyReferralLink(); });
             document.getElementById('move-to-balance-btn').addEventListener('click', handleMoveToBalance);
+            
+            // د Smartlink اعلان بټن سره تړل
+            document.getElementById('smartlink-ad-btn').addEventListener('click', showSmartlinkAd);
             
             // د USDT ویډرا میتود ټوګل اضافه کول
             document.querySelector('.withdraw-method-toggle').addEventListener('click', (e) => {
